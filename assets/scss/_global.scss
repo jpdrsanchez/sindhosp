@@ -1,13 +1,23 @@
 :root {
   /* Colors */
   --black: #000;
+  --black-2: #343638;
+  --black-3: #202124;
   --white: #fff;
+  --white-2: #f6f8f9;
+  --grey: #cbd0d3;
+  --grey-2: #ebeded;
+  --grey-3: #a6adb4;
+  --blue: #00a2e2;
+  --green: #209e86;
+  --green-2: #1c3b3f;
+  --red: #b20013;
 
   /* Typography */
-  --main-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --main-font: 'Montserrat', sans-serif;
 
   /* Units */
+  --container-xxl: 90rem; // 1440px
   --container-xl: 71.25rem; // 1140px
   --container-lg: 60rem; // 960px
   --container-md: 45rem; // 720px
@@ -17,7 +27,6 @@
 
 html {
   box-sizing: border-box;
-  height: 100%;
 }
 
 *,
@@ -30,10 +39,6 @@ body {
   color: var(--black);
   font-family: var(--main-font);
   font-size: 1rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 a {
@@ -76,8 +81,128 @@ button {
   @include media-up(x-large-up) {
     max-width: var(--container-xl);
   }
+
+  @include media-up(xx-large-up) {
+    max-width: var(--container-xxl);
+  }
 }
 
 .no-overflow {
   overflow: hidden;
+}
+
+.pageWrapper {
+  margin-top: -3rem;
+  padding-top: 3rem;
+}
+
+.newsletter {
+  background: var(--white-2);
+  padding-bottom: 3rem;
+
+  &__container {
+    background: var(--green-2);
+    border-radius: 0.375rem;
+    display: grid;
+    gap: 1.875rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    align-items: center;
+
+    @include media-down(large-down) {
+      padding-right: 1.875rem;
+      padding-left: 1.875rem;
+    }
+
+    @include media-up(large-up) {
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }
+
+  &__content {
+    color: var(--white);
+
+    @include media-up(large-up) {
+      grid-column: 2 / 7;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 2.125rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
+
+  &__form {
+    display: grid;
+    gap: 1.25rem;
+    position: relative;
+
+    @include media-up(small-up) {
+      grid-template-columns: 1fr auto;
+    }
+
+    @include media-up(large-up) {
+      grid-column: 7 / 12;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 1.75rem;
+      height: 1.5rem;
+      background: url('./images/mail.png') no-repeat center center;
+      background-size: contain;
+      position: absolute;
+      top: 0.625rem;
+      left: 0.625rem;
+      z-index: 800;
+
+      @include media-up(small-up) {
+        transform: translateY(-50%);
+        top: 50%;
+      }
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      appearance: none;
+      border: 0.125rem solid var(--grey-2);
+      padding: 0.6875rem 1rem 0.625rem 3rem;
+      border-radius: 0.375rem;
+      background: var(--white);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      border: none;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1.25rem;
+      text-align: center;
+      text-transform: uppercase;
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
+      border-radius: 0.375rem;
+      border: 0.125rem solid var(--red);
+
+      @include media-down(small-down) {
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+      }
+    }
+  }
 }

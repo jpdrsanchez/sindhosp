@@ -1,0 +1,23 @@
+.menu {
+  @include media-down(large-down) {
+    display: none;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__link {
+    color: var(--black-2);
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    text-transform: uppercase;
+  }
+}
